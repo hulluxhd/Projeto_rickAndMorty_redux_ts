@@ -1,7 +1,7 @@
 import "./paginacao.css";
 import { useState, useEffect } from 'react'
-import {useDispatch} from "react-redux"
-import { getCharactersFromAPI, cleanFilter, setFilter } from "../../state/characters/characters.slice";
+import {useDispatch, useSelector} from "react-redux"
+import { getCharactersFromAPI, cleanFilter, setFilter, swapPage, pageSelector } from "../../state/characters/characters.slice";
 /**
  * Componente que contém os botões para paginar
  *
@@ -15,19 +15,23 @@ const Paginacao = () => {
   const [pageNumber, setPageNumber] = useState(1)
   const dispatch = useDispatch()
 
+  const page = useSelector(pageSelector)
+  console.log(page)
+
   useEffect(() => { 
     dispatch(cleanFilter())
-    dispatch(getCharactersFromAPI(pageNumber))
-  }, [pageNumber])
+    dispatch(getCharactersFromAPI())
+  }, [dispatch, page])
   
 
-  const pageUp = () => setPageNumber(pageNumber => pageNumber += 1)
-  const pageDown = () => setPageNumber(pageNumber => pageNumber -= 1)
+  const pageUp = () => dispatch(swapPage(page + 1))
+  
+  const pageDown = () => dispatch(swapPage(page - 1))
 
   return (
 
     <div className="paginacao">
-      <button onClick={pageDown} disabled={pageNumber === 1 ? true : false} className={"primary"}>
+      <button onClick={pageDown} disabled={page === 1 ? true : false} className={"primary"}>
         Anterior
       </button>
       <button onClick={pageUp} disabled={false} className={"primary"}>
