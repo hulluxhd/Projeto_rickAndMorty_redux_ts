@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, current } from '@reduxjs/toolkit'
 import { rickandmortyapi } from '../../services/api'
 import { routes } from '../../services/api.routes'
 
@@ -25,8 +25,8 @@ export const charactersReducer = createSlice({
             console.log(action.payload)
             const teste = [...state.charactersList]
             const char = teste.find(c => c.id === action.payload.id)
-            console.log(char)
             char.favourite = !char.favourite
+            console.log(current(state.charactersList))
             //state.charactersList = [...state.charactersList, {...state.charactersList[char], favourite: true}]
         },
 

@@ -12,7 +12,6 @@ import { charactersSelector, filterSelector } from "../../state/characters/chara
  * @returns Elemento JSX
  */
 const GradePersonagem = ({ characters }) => {
-    console.log(characters)
   return (
     <div className="grade-personagens">
       {characters.map(character => <CardPersonagem key={character.id} character={character} />)}

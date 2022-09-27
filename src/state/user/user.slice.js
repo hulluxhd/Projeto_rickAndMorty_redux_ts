@@ -14,14 +14,14 @@ export const userReducer = createSlice({
     }
 })
 
-export const favouriteThunk = (character) => (dispatch, getState) => {
+export const favouriteThunk =  (character) => async (dispatch, getState) => {
     const state = getState()
 
-    dispatch(favourite(character))
-
+    await dispatch(favourite(character))
+    // essa lógica tá ruim. Melhorar
     const fav = state.characters.charactersList.filter(char => char.favourite === true)
     console.log(fav)
-    
+
     dispatch(addToFavourite(fav))
 }
 

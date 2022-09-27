@@ -26,7 +26,7 @@ const CardPersonagem = ({ character }) => {
       />
       <div className="card-personagem-body">
         <span>{name}</span>
-        <BotaoFavorito onClick={() => dispatch(favouriteThunk(character))} isFavorito={false} />
+        <BotaoFavorito onClick={() => dispatch(favouriteThunk(character))} isFavorito={character.favourite} />
       </div>
     </div>
   );
