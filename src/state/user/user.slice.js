@@ -13,7 +13,8 @@ export const userReducer = createSlice({
         },
         removeFavouriteFromUser: (state, action) => { 
             state.favourites = state.favourites.filter(char => char.id !== action.payload.id)
-        }
+        },
+        clearFavourites: (state) => void(state.favourites = [])
     }
 })
 
@@ -31,6 +32,6 @@ export const favouriteThunk =  (character) => (dispatch, getState) => {
 
 export const favouritesSelector = (state) => state.user.favourites
 
-export const { addToUserFavourite, removeFavouriteFromUser } = userReducer.actions
+export const { addToUserFavourite, removeFavouriteFromUser, clearFavourites } = userReducer.actions
 
 export default userReducer.reducer
