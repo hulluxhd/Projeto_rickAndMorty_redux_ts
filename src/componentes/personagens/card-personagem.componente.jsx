@@ -1,5 +1,7 @@
 import BotaoFavorito from "../botoes/botao-favorito.componente";
 import "./card-personagem.css";
+import { useDispatch } from "react-redux"
+import { addToFavourite, favouriteThunk } from "../../state/user/user.slice";
 
 /**
  * Card para cada personagem dentro da grade de personagem.
@@ -9,16 +11,22 @@ import "./card-personagem.css";
  *
  * @returns Elemento JSX
  */
-const CardPersonagem = () => {
+const CardPersonagem = ({ character }) => {
+
+  const { image, name } = character;
+
+  const dispatch = useDispatch()
+
+
   return (
     <div className="card-personagem">
       <img
-        src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
-        alt="Rick Sanchez"
+        src={image}
+        alt={name}
       />
       <div className="card-personagem-body">
-        <span>Rick Sanchez</span>
-        <BotaoFavorito isFavorito={false} />
+        <span>{name}</span>
+        <BotaoFavorito onClick={() => dispatch(favouriteThunk(character))} isFavorito={false} />
       </div>
     </div>
   );

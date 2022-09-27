@@ -11,7 +11,7 @@ const BotaoFavorito = ({ isFavorito, onClick }) => {
   const src = isFavorito ? "/imagenes/star-filled.png" : "/imagenes/star.png";
 
   return (
-    <div className="botao-favorito">
+    <div onClick={onClick} className="botao-favorito">
       <img src={src} alt={"favorito"} />
     </div>
   );

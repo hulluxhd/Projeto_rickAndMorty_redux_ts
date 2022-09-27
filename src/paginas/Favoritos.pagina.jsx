@@ -1,4 +1,6 @@
 import GradePersonagens from "../componentes/personagens/grade-personagens.componente";
+import { useSelector } from "react-redux"
+import { favouritesSelector } from "../state/user/user.slice";
 
 /**
  * Esta é a página de favoritos. Aqui você deve ver todos os personagens marcados como favoritos
@@ -9,13 +11,17 @@ import GradePersonagens from "../componentes/personagens/grade-personagens.compo
  * @returns Página de favoritos
  */
 const PaginaFavoritos = () => {
+
+  const favourites = useSelector(favouritesSelector)
+  console.log(favourites)
+
   return (
     <div className="container">
       <div className="actions">
         <h3>Personagens Favoritos</h3>
         <button className="danger">Test Button</button>
       </div>
-      <GradePersonagens />
+      <GradePersonagens characters={favourites} />
     </div>
   );
 };
