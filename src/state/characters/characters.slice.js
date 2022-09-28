@@ -23,7 +23,7 @@ export const charactersReducer = createSlice({
             })
         },
 
-        swapPage: (state, action) => { 
+        swapPage: (state, action) => {
             state.pageNumber = action.payload
         },
 
@@ -58,7 +58,7 @@ export const getCharactersFromAPI = () => {
             const { data: { results } } = characters
             const userFavourites = getState().user.favourites
             let charactersArray = sanitizedData(results, userFavourites)
-            
+
             dispatch(setCharacters(charactersArray.flatMap(n => n)))
         } catch (e) {
             console.log(e)

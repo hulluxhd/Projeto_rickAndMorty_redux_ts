@@ -8,13 +8,15 @@ import "./card-episodio.css";
  *
  * @returns Elemento JSX
  */
-const CardEpisodio = () => {
+const CardEpisodio = ({ episode }) => {
+  const { name, air_date, episode: ep } = episode
+
   return (
     <div className="card-episodio">
-      <h4>Close Rick-counters of the Rick Kind</h4>
+      <h4>{name}</h4>
       <div>
-        <span>S01E01</span>
-        <span>Lançado em: April 7, 2014</span>
+        <span>{ep}</span>
+        <span>Lançado em: {air_date}</span>
       </div>
     </div>
   );

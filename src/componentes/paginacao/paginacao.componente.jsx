@@ -1,7 +1,7 @@
 import "./paginacao.css";
-import { useState, useEffect } from 'react'
-import {useDispatch, useSelector} from "react-redux"
-import { getCharactersFromAPI, cleanFilter, setFilter, swapPage, pageSelector } from "../../state/characters/characters.slice";
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from "react-redux"
+import { getCharactersFromAPI, cleanFilter, swapPage, pageSelector } from "../../state/characters/characters.slice";
 /**
  * Componente que contém os botões para paginar
  *
@@ -12,20 +12,18 @@ import { getCharactersFromAPI, cleanFilter, setFilter, swapPage, pageSelector } 
  */
 const Paginacao = () => {
 
-  const [pageNumber, setPageNumber] = useState(1)
   const dispatch = useDispatch()
 
   const page = useSelector(pageSelector)
-  console.log(page)
 
-  useEffect(() => { 
+  useEffect(() => {
     dispatch(cleanFilter())
     dispatch(getCharactersFromAPI())
   }, [dispatch, page])
-  
+
 
   const pageUp = () => dispatch(swapPage(page + 1))
-  
+
   const pageDown = () => dispatch(swapPage(page - 1))
 
   return (

@@ -23,6 +23,7 @@ export function sanitizedData(results, fav) {
             status: character.status,
             species: character.species,
             gender: character.gender,
+            origin: character.origin,
             image: character.image,
             episode: character.episode,
             favourite: false
