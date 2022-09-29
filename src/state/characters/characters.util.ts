@@ -1,3 +1,5 @@
+import { ICharacter } from "types/character.type"
+
 /**
      * Faz a sanitização dos dados e compara com o array de favoritos.
      * Se o objeto que está chegando já estiver no array de favoritos, 
@@ -8,8 +10,8 @@
      * @param {[]} fav 
      * @returns [{}]
         */
-export function sanitizedData(results, fav) {
-    const array = results.map(character => {
+export function sanitizedData(results: ICharacter[], fav: ICharacter[]) {
+    const array: ICharacter[] = results.map(character => {
         if (fav.length > 0) {
             for (let i = 0; i < fav.length; i++) {
                 if (fav[i].id === character.id) {

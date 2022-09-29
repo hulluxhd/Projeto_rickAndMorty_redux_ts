@@ -1,12 +1,12 @@
 import "./filtros.css";
-import {useDispatch, useSelector} from "react-redux"
+import {useAppDispatch, useAppSelector} from "@state/hooks"
 import { filterCharName, filterSelector, setCharacterFilter, setFilter } from "../../state/characters/characters.slice";
 
 
 const Filtros = () => {
 
-  const dispatch = useDispatch()
-  const filter = useSelector(filterCharName)
+  const dispatch = useAppDispatch()
+  const filter = useAppSelector(filterCharName)
 
   return (
     <div className="filtros">

@@ -46,8 +46,7 @@ export const charactersReducer = createSlice({
 })
 
 /**
- * Função thunk para fazer o get nos personagens
- * @param {number} pageNumber Retorna a página a ser chamada na api
+ * Função thunk para fazer o get nos personagens. Utiliza o número de página guardado na store
  * @returns Retorna o json de personagens
  */
 export const getCharactersFromAPI = () => {

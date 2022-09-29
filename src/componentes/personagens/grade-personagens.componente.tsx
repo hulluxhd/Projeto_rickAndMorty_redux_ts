@@ -1,7 +1,6 @@
 import "./grade-personagem.css";
 import CardPersonagem from "./card-personagem.componente";
-import { useSelector } from "react-redux"
-import { charactersSelector, filterSelector } from "../../state/characters/characters.slice";
+import { GradePersonagemProps } from "./grade-personagem.type";
 
 /**
  * Grade de personagens para a página inicial
@@ -11,7 +10,10 @@ import { charactersSelector, filterSelector } from "../../state/characters/chara
  *
  * @returns Elemento JSX
  */
-const GradePersonagem = ({ characters }) => {
+const GradePersonagem = (props: GradePersonagemProps) => {
+
+  const { characters } = props
+
   return (
     <div className="grade-personagens">
       {characters.map(character => <CardPersonagem key={character.id} character={character} />)}

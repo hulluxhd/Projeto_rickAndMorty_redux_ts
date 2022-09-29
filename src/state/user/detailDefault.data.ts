@@ -1,4 +1,4 @@
-let detailDefault = {
+const detailDefault = {
     "id": 1,
     "name": "Rick Sanchez",
     "status": "Alive",

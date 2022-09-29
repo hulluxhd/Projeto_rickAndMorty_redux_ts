@@ -217,7 +217,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 // Importamos applyMiddleware do Redux, para poder adicionar Thunk ou Saga como Middleware
 import { createStore, applyMiddleware } from 'redux';
-import {TypedUseSelectorHook, useSelector as useReduxSelector} from "react-redux";
+import {TypeduseAppSelectorHook, useAppSelector as useReduxSelector} from "react-redux";
 
 
 
@@ -227,8 +227,8 @@ const rootReducer = combineReducers({
 
 export type IRootState = ReturnType<typeof rootReducer>;
 
-// Tipamos o hook useSelector
-export const useSelector: TypedUseSelectorHook<IRootState> = useReduxSelector
+// Tipamos o hook useAppSelector
+export const useAppSelector: TypeduseAppSelectorHook<IRootState> = useReduxSelector
 
 export const store = createStore(
     rootReducer, composeWithDevTools() // Aqui vamos aplicar os middlewares
@@ -313,7 +313,7 @@ Depois de mostrar os personagens na lista de favoritos, agora você pode colocar
 
 ### Passo 8 - Integração
 
-Agora sim, podemos ir componente por componente integrando com o Redux através dos hooks useSelector e dispatch, para interagir com o estado
+Agora sim, podemos ir componente por componente integrando com o Redux através dos hooks useAppSelector e dispatch, para interagir com o estado
 
 _Dica: Lembre-se que você pode ver o que está acontecendo no estado através da extensão ReduxDevTools do Chrome e, se necessário, depurar para encontrar possíveis erros._
 

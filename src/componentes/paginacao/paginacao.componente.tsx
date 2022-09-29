@@ -1,7 +1,7 @@
 import "./paginacao.css";
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from "react-redux"
 import { getCharactersFromAPI, cleanFilter, swapPage, pageSelector } from "../../state/characters/characters.slice";
+import { useAppDispatch, useAppSelector } from "@state/hooks";
 /**
  * Componente que contém os botões para paginar
  *
@@ -12,9 +12,9 @@ import { getCharactersFromAPI, cleanFilter, swapPage, pageSelector } from "../..
  */
 const Paginacao = () => {
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
-  const page = useSelector(pageSelector)
+  const page = useAppSelector(pageSelector)
 
   useEffect(() => {
     dispatch(cleanFilter())

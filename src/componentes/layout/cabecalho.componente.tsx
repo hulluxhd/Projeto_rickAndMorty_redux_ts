@@ -8,7 +8,7 @@ import "./cabecalho.css";
  *
  * @returns {JSX.Element}
  */
-const Cabecalho = () => {
+const Cabecalho = (): JSX.Element => {
   return (
     <header>
       <div>

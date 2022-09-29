@@ -1,8 +1,10 @@
 import BotaoFavorito from "../botoes/botao-favorito.componente";
 import "./card-personagem.css";
-import { useDispatch } from "react-redux"
 import { favouriteThunk, setDetailPage } from "../../state/user/user.slice";
 import { useNavigate } from "react-router-dom"
+import { useAppDispatch } from "@state/hooks";
+import { CardPersonagemProps } from "./card-personagem.type";
+import { ICharacter } from "types/character.type";
 
 const styles = {
   cursor: 'pointer',
@@ -16,14 +18,15 @@ const styles = {
  *
  * @returns Elemento JSX
  */
-const CardPersonagem = ({ character }) => {
 
-  const { image, name } = character;
+const CardPersonagem = (props: CardPersonagemProps) => {
 
-  const dispatch = useDispatch()
+  const { character: { image }, character: { name }, character } = props;
+
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
-  const seeDetailPage = (char) => {
+  const seeDetailPage = (char: ICharacter) => {
     dispatch(setDetailPage(char))
     navigate("/detalhe")
   }

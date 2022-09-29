@@ -1,5 +1,6 @@
 import "./botao-favorito.css";
-import {AiOutlineStar, AiFillStar} from "react-icons/ai"
+import { AiOutlineStar, AiFillStar } from "react-icons/ai"
+import { BotoesProps } from "./botoes.types";
 /**
  * Botão que indica se um elemento é favorito ou não, e dá a possibilidade de marcá-lo/desmarcá-lo
  *
@@ -8,7 +9,8 @@ import {AiOutlineStar, AiFillStar} from "react-icons/ai"
  *
  * @returns Elemento JSX
  */
-const BotaoFavorito = ({ isFavorito, onClick }) => {
+const BotaoFavorito = (props: BotoesProps) => {
+  const { isFavorito, onClick } = props
   const src = isFavorito ? <AiFillStar /> : <AiOutlineStar />;
 
   return (

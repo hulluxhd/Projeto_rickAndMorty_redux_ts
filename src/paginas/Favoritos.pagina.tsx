@@ -1,5 +1,5 @@
 import GradePersonagens from "../componentes/personagens/grade-personagens.componente";
-import { useSelector, useDispatch } from "react-redux"
+import { useAppSelector, useAppDispatch } from "@state/hooks"
 import { clearFavourites, favouritesSelector } from "../state/user/user.slice";
 
 /**
@@ -12,15 +12,15 @@ import { clearFavourites, favouritesSelector } from "../state/user/user.slice";
  */
 const PaginaFavoritos = () => {
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
-  const favourites = useSelector(favouritesSelector)
+  const favourites = useAppSelector(favouritesSelector)
 
   return (
     <div className="container">
       <div className="actions">
         <h3>Personagens Favoritos</h3>
-        <button onClick={()=>dispatch(clearFavourites())} className="danger">Limpar tudo</button>
+        <button onClick={() => dispatch(clearFavourites())} className="danger">Limpar tudo</button>
       </div>
       <GradePersonagens characters={favourites} />
     </div>

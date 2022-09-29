@@ -1,11 +1,11 @@
 import "./Detalhe.css";
 import BotaoFavorito from "../componentes/botoes/botao-favorito.componente";
 import CardEpisodio from "../componentes/episodios/card-episodio.componente";
-import { detail, detailEpisodesArray, detailEpisodesThunk } from "../state/user/user.slice";
-import { useSelector, useDispatch } from "react-redux"
+import { detail, detailEpisodesArray, detailEpisodesThunk } from "@state/user/user.slice";
+import { useAppSelector, useAppDispatch } from "@state/hooks"
 import { useEffect } from "react"
 
-function getEpisodesId(episodes) {
+function getEpisodesId(episodes: string[]) {
   const eps = episodes.map(episode => {
     const id = episode.slice(episode.lastIndexOf('/') + 1)
     return id
@@ -27,9 +27,9 @@ function getEpisodesId(episodes) {
  */
 const PaginaDetalhe = () => {
 
-  const { name, image, gender, origin: { name: locationName }, favourite, episode } = useSelector(detail)
-  const episodesArray = useSelector(detailEpisodesArray)
-  const dispatch = useDispatch()
+  const { name, image, gender, origin: { name: locationName }, favourite, episode } = useAppSelector(detail)
+  const episodesArray = useAppSelector(detailEpisodesArray)
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     dispatch(detailEpisodesThunk(getEpisodesId(episode)))

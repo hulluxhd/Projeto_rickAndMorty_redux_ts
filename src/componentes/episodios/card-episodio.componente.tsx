@@ -1,4 +1,5 @@
 import "./card-episodio.css";
+import { CardEpisodioProps } from "./card-episodio.types";
 
 /**
  * Card para cada episódio na visualização do personagem.
@@ -8,14 +9,14 @@ import "./card-episodio.css";
  *
  * @returns Elemento JSX
  */
-const CardEpisodio = ({ episode }) => {
-  const { name, air_date, episode: ep } = episode
+const CardEpisodio = (props: CardEpisodioProps) => {
+  const { name, air_date, episode } = props.episode
 
   return (
     <div className="card-episodio">
       <h4>{name}</h4>
       <div>
-        <span>{ep}</span>
+        <span>{episode}</span>
         <span>Lançado em: {air_date}</span>
       </div>
     </div>
