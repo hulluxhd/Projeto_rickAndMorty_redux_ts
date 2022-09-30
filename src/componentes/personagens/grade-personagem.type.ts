@@ -1,4 +1,4 @@
-import { ICharacter } from "types/character.type";
+import { ICharacter } from "../../types/character.type";
 
 export interface GradePersonagemProps {
     characters: ICharacter[]

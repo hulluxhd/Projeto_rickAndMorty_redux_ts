@@ -1,4 +1,4 @@
-import { ICharacter } from "types/character.type"
+import { ICharacter } from "../../types/character.type"
 
 /**
      * Faz a sanitização dos dados e compara com o array de favoritos.

@@ -1,5 +1,5 @@
 import GradePersonagens from "../componentes/personagens/grade-personagens.componente";
-import { useAppSelector, useAppDispatch } from "@state/hooks"
+import { useAppDispatch, useAppSelector } from "../state/hooks";
 import { clearFavourites, favouritesSelector } from "../state/user/user.slice";
 
 /**

@@ -1,9 +1,8 @@
-import { useAppDispatch, useAppSelector } from "@state/hooks"
-
 import Filtros from "../componentes/personagens/filtros.componente";
 import GradePersonagens from "../componentes/personagens/grade-personagens.componente";
 import Paginacao from "../componentes/paginacao/paginacao.componente";
-import { charactersSelector, cleanFilter, filterSelector } from "@state/characters/characters.slice";
+import { useAppDispatch, useAppSelector } from "../state/hooks";
+import { charactersSelector, cleanFilter, filterSelector } from "../state/characters/characters.slice";
 
 /**
  * Esta é a página principal. Aqui você deve ver o painel de filtro junto com a grade de personagens.

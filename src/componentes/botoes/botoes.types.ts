@@ -1,4 +1,4 @@
 export interface BotoesProps {
-    isFavorito: boolean;
-    onClick?: () => MouseEvent
+    isFavorito?: boolean;
+    onClick?: () => void
 }

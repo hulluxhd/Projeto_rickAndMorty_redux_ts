@@ -4,8 +4,11 @@ export interface ICharacter {
     status: string,
     species: string,
     gender: string,
-    origin: string,
+    origin: {
+        name: string,
+        url: string,
+    },
     image: string,
-    episode: string,
-    favourite: boolean
+    episode: string[],
+    favourite?: boolean
 }

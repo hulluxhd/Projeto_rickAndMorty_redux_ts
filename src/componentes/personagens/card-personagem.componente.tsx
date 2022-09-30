@@ -2,9 +2,9 @@ import BotaoFavorito from "../botoes/botao-favorito.componente";
 import "./card-personagem.css";
 import { favouriteThunk, setDetailPage } from "../../state/user/user.slice";
 import { useNavigate } from "react-router-dom"
-import { useAppDispatch } from "@state/hooks";
 import { CardPersonagemProps } from "./card-personagem.type";
-import { ICharacter } from "types/character.type";
+import { useAppDispatch } from "../../state/hooks";
+import { ICharacter } from "../../types/character.type";
 
 const styles = {
   cursor: 'pointer',

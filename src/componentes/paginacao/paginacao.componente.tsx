@@ -1,7 +1,9 @@
 import "./paginacao.css";
 import { useEffect } from 'react'
 import { getCharactersFromAPI, cleanFilter, swapPage, pageSelector } from "../../state/characters/characters.slice";
-import { useAppDispatch, useAppSelector } from "@state/hooks";
+import { useAppDispatch, useAppSelector } from "../../state/hooks";
+
+
 /**
  * Componente que contém os botões para paginar
  *

@@ -1,20 +1,32 @@
-import { createSlice, current } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction} from '@reduxjs/toolkit'
 import { rickandmortyapi } from '../../services/api'
 import { routes } from '../../services/api.routes'
+import { ICharacter } from '../../types/character.type'
+import { AppThunkDispatch, RootState } from '../store'
 import { sanitizedData } from './characters.util'
+
+
+interface charactersState {
+    charactersList: ICharacter[],
+    filteredCharacters: ICharacter[],
+    charFilterName: string,
+    pageNumber: number
+}
+
+const initialState: charactersState = {
+    charactersList: [],
+    filteredCharacters: [],
+    charFilterName: "",
+    pageNumber: 1
+}
 
 export const charactersReducer = createSlice({
     name: 'characters',
-    initialState: {
-        charactersList: [],
-        filteredCharacters: [],
-        charFilterName: "",
-        pageNumber: 1
-    },
+    initialState,
     reducers: {
-        setCharacters: (state, action) => void (state.charactersList = action.payload),
+        setCharacters: (state, action: PayloadAction<ICharacter[]>) => void (state.charactersList = action.payload),
 
-        setFilter: (state, action) => void (state.charFilterName = action.payload),
+        setFilter: (state, action: PayloadAction<string>) => void (state.charFilterName = action.payload),
 
         setCharacterFilter: (state) => {
             state.filteredCharacters = state.charactersList.filter(char => {
@@ -23,7 +35,7 @@ export const charactersReducer = createSlice({
             })
         },
 
-        swapPage: (state, action) => {
+        swapPage: (state, action: PayloadAction<number>) => {
             state.pageNumber = action.payload
         },
 
@@ -32,10 +44,13 @@ export const charactersReducer = createSlice({
          * @param {[]} state 
          * @param {{type: string, payload: {}}} action 
          */
-        favourite: (state, action) => {
+        favourite: (state, action: PayloadAction<ICharacter>) => {
             const teste = [...state.charactersList]
             const char = teste.find(c => c.id === action.payload.id)
-            char.favourite = !char.favourite
+            if (char) {
+                char.favourite = !char.favourite
+            }
+                
         },
 
         cleanFilter: (state) => {
@@ -50,15 +65,17 @@ export const charactersReducer = createSlice({
  * @returns Retorna o json de personagens
  */
 export const getCharactersFromAPI = () => {
-    return async (dispatch, getState) => {
+    return async (dispatch: AppThunkDispatch, getState: () => RootState) => {
 
         try {
             const characters = await rickandmortyapi.get(`${routes.CHARACTERS}/?page=${getState().characters.pageNumber}`)
             const { data: { results } } = characters
             const userFavourites = getState().user.favourites
-            let charactersArray = sanitizedData(results, userFavourites)
+            if (results.length > 0) {
+                const charactersArray = sanitizedData(results, userFavourites)
+                dispatch(setCharacters(charactersArray.flatMap(n => n)))
+            } else alert(new Error("No characters were found"))
 
-            dispatch(setCharacters(charactersArray.flatMap(n => n)))
         } catch (e) {
             console.log(e)
             alert(e)
@@ -66,10 +83,10 @@ export const getCharactersFromAPI = () => {
     }
 }
 
-export const charactersSelector = (state => state.characters.charactersList)
-export const filterSelector = (state => state.characters.filteredCharacters)
-export const filterCharName = (state => state.characters.charFilterName)
-export const pageSelector = (state => state.characters.pageNumber)
+export const charactersSelector = (state: RootState) => state.characters.charactersList;
+export const filterSelector = (state: RootState) => state.characters.filteredCharacters;
+export const filterCharName = (state: RootState) => state.characters.charFilterName;
+export const pageSelector = (state: RootState) => state.characters.pageNumber;
 
 export const { swapPage, setCharacters, setCharacterFilter, cleanFilter, setFilter, favourite } = charactersReducer.actions
 

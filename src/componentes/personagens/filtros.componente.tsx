@@ -1,6 +1,6 @@
 import "./filtros.css";
-import {useAppDispatch, useAppSelector} from "@state/hooks"
 import { filterCharName, filterSelector, setCharacterFilter, setFilter } from "../../state/characters/characters.slice";
+import { useAppDispatch, useAppSelector } from "../../state/hooks";
 
 
 const Filtros = () => {

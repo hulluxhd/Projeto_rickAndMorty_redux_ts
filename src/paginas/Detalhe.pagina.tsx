@@ -1,9 +1,9 @@
 import "./Detalhe.css";
 import BotaoFavorito from "../componentes/botoes/botao-favorito.componente";
 import CardEpisodio from "../componentes/episodios/card-episodio.componente";
-import { detail, detailEpisodesArray, detailEpisodesThunk } from "@state/user/user.slice";
-import { useAppSelector, useAppDispatch } from "@state/hooks"
 import { useEffect } from "react"
+import { useAppDispatch, useAppSelector } from "../state/hooks";
+import { detail, detailEpisodesArray, detailEpisodesThunk } from "../state/user/user.slice";
 
 function getEpisodesId(episodes: string[]) {
   const eps = episodes.map(episode => {
@@ -27,7 +27,7 @@ function getEpisodesId(episodes: string[]) {
  */
 const PaginaDetalhe = () => {
 
-  const { name, image, gender, origin: { name: locationName }, favourite, episode } = useAppSelector(detail)
+  const { name, image, gender, origin: {name: originName}, favourite, episode } = useAppSelector(detail)
   const episodesArray = useAppSelector(detailEpisodesArray)
   const dispatch = useAppDispatch()
 
@@ -47,7 +47,7 @@ const PaginaDetalhe = () => {
           />
           <div className={"detalhe-header-texto"}>
             <p>{name}</p>
-            <p>Planeta: {locationName}</p>
+            <p>Planeta: {originName}</p>
             <p>Genero: {gender}</p>
           </div>
           <BotaoFavorito isFavorito={favourite} />

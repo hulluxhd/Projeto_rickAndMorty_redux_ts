@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { Action, configureStore, ThunkDispatch } from "@reduxjs/toolkit";
 import  charactersReducer  from "./characters/characters.slice";
 import  userReducer  from "./user/user.slice";
 
@@ -11,3 +11,5 @@ export const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
+
+export type AppThunkDispatch = ThunkDispatch<RootState, void, Action<string>>
