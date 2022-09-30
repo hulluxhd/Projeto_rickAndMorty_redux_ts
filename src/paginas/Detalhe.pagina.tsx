@@ -33,8 +33,7 @@ const PaginaDetalhe = () => {
 
   useEffect(() => {
     dispatch(detailEpisodesThunk(getEpisodesId(episode)))
-
-  }, [dispatch])
+  }, [dispatch, episode])
 
   return (
     <div className="container">

@@ -1,5 +1,5 @@
 import "./filtros.css";
-import { filterCharName, filterSelector, setCharacterFilter, setFilter } from "../../state/characters/characters.slice";
+import { filterCharName, setCharacterFilter, setFilter } from "../../state/characters/characters.slice";
 import { useAppDispatch, useAppSelector } from "../../state/hooks";
 
 

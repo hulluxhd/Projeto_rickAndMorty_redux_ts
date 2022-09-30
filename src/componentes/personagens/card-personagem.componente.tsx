@@ -21,7 +21,7 @@ const styles = {
 
 const CardPersonagem = (props: CardPersonagemProps) => {
 
-  const { character: { image }, character: { name }, character } = props;
+  const { character: { image, name }, character } = props;
 
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -30,7 +30,6 @@ const CardPersonagem = (props: CardPersonagemProps) => {
     dispatch(setDetailPage(char))
     navigate("/detalhe")
   }
-
 
   return (
     <div className="card-personagem">
