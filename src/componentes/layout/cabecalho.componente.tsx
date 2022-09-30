@@ -13,7 +13,7 @@ const Cabecalho = (): JSX.Element => {
     <header>
       <div>
         <div>
-          <h2>Exame Final de Frontend IV</h2>
+          <h2>Rick and Morty - Redux/Thunk + TS</h2>
         </div>
         <nav>
           <ul>
