@@ -45,8 +45,8 @@ export const charactersReducer = createSlice({
          * @param {{type: string, payload: {}}} action 
          */
         favourite: (state, action: PayloadAction<ICharacter>) => {
-            const teste = [...state.charactersList]
-            const char = teste.find(c => c.id === action.payload.id)
+            const charArray = [...state.charactersList]
+            const char = charArray.find(c => c.id === action.payload.id)
             if (char) {
                 char.favourite = !char.favourite
             }
@@ -67,17 +67,25 @@ export const charactersReducer = createSlice({
 export const getCharactersFromAPI = () => {
     return async (dispatch: AppThunkDispatch, getState: () => RootState) => {
 
+        const { characters: { pageNumber } } = getState()
+
         try {
-            const characters = await rickandmortyapi.get(`${routes.CHARACTERS}/?page=${getState().characters.pageNumber}`)
+            const characters = await rickandmortyapi.get(`${routes.CHARACTERS}/?page=${pageNumber}`)
+            
             const { data: { results } } = characters
-            const userFavourites = getState().user.favourites
+            
+            const { user: { favourites: userFavourites } } = getState()
+
             if (results.length > 0) {
+                
                 const charactersArray = sanitizedData(results, userFavourites)
+                
                 dispatch(setCharacters(charactersArray.flatMap(n => n)))
+
             } else alert(new Error("No characters were found"))
 
         } catch (e) {
-            console.log(e)
+            console.error(e)
             alert(e)
         }
     }

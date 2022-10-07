@@ -60,6 +60,11 @@ export const favouriteThunk = (character: ICharacter) => (dispatch: AppThunkDisp
 
 }
 
+/**
+ * Faz o fetch da lista de episódios que um personagem participou
+ * @param {string} idsArray É um array de strings pois a documentação da api nos informa que podemos fazer o fetch dos dados com tal objeto plano 
+ * @returns 
+ */
 export const detailEpisodesThunk = (idsArray: string[]) => async (dispatch: AppThunkDispatch) => {
     try {
         const { data } = await rickandmortyapi.get(`${routes.EPISODES}/${idsArray}`)
